@@ -13,7 +13,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi import Request
 
 
-GOOGLE_API_KEY = "AIzaSyD_e5Bk00mK1a9l8kNBwXnsPV26VwcrkMU"  # add your GOOGLE API key here
+GOOGLE_API_KEY = "YOUR_GOOGLE_API"  
 os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
 
 
