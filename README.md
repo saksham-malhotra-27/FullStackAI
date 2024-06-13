@@ -1,4 +1,7 @@
 ## Project Setup Instructions
+![Screenshot 2024-06-13 202226](https://github.com/saksham-malhotra-27/FullStackAI/assets/147790402/f16784aa-5def-4902-ba6d-e00c8118c1af)
+![Screenshot 2024-06-13 202403](https://github.com/saksham-malhotra-27/FullStackAI/assets/147790402/af5acbb7-5573-4e78-acb4-cc09727afe82)
+
 ### Backend Setup
 
 +  Navigate to the Backend Directory:
