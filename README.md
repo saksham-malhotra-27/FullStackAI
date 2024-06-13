@@ -34,7 +34,6 @@ Note: To change the port number you have to configure the fronted's vite config 
 ```
 npm install
 ``` 
-+ Setup tailwind from [https://tailwindcss.com/docs/guides/vite](https://tailwindcss.com/docs/guides/vite)
 + setup vite config file:
 ```
 import { defineConfig } from 'vite'  
