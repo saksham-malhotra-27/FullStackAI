@@ -7,67 +7,34 @@ cd backend
 ```
 + Install Required Packages:
 ```
-pip install fastapi sqlalchemy alembic uvicorn sqlalchemy psycopg2-binary pymupdf pydantic llama_index
+pip install fastapi sqlalchemy alembic uvicorn sqlalchemy psycopg2-binary pymupdf pydantic llama_index llama_index.llms.gemini
 ```
-+ Add database url in alembic.ini under sqlalchemy.url name and in the file named database.py, Note that add url in alembic without quotes  
++ Initialize alembic (make sure you are in backend directory) using:
+```
+alembic init alembic 
+```
++ Add database url in alembic.ini under sqlalchemy.url name and in the file named database.py, Note that add url in alembic.ini without quotes
++ Also, copy / paste the content inside backend/env.py to backend/alembic/env.py and delete thr former file
 + Add google api key with google ai studio features enabled from [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
-+ cut/paste this to alembic/envpy:
++ Run these commands (make sure in the backend dir)
 ```
-from logging.config import fileConfig  
-from sqlalchemy import engine_from_config  
-from sqlalchemy import pool  
-from database import Base  
-from models import *  
-from alembic import context  
-config = context.config  
-if config.config_file_name is not None:  
-fileConfig(config.config_file_name)  
-  
-target_metadata = Base.metadata  
-  
-def run_migrations_offline() -> None:  
-url = config.get_main_option("sqlalchemy.url")  
-context.configure(  
-url=url,  
-target_metadata=target_metadata,  
-literal_binds=True,  
-dialect_opts={"paramstyle": "named"},  
-)  
-  
-with context.begin_transaction():  
-context.run_migrations()  
-  
-  
-def run_migrations_online() -> None:  
-connectable = engine_from_config(  
-config.get_section(config.config_ini_section, {}),  
-prefix="sqlalchemy.",  
-poolclass=pool.NullPool,  
-)  
-  
-with connectable.connect() as connection:  
-context.configure(  
-connection=connection, target_metadata=target_metadata  
-)  
-  
-with context.begin_transaction():  
-context.run_migrations()  
-  
-  
-if context.is_offline_mode():  
-run_migrations_offline()  
-else:  
-run_migrations_online()
+alembic revision --autogenerate -m "Initial migration"  
+alembic upgrade head
 ```
-
-+ alembic revision --autogenerate -m "Initial migration"  
-+ alembic upgrade head  
-+ make an upload directory in the backend directory where alembic folder lies
++ Make an upload directory in the backend directory where alembic folder lies
++ Finally run the connection through :
+```
+uvicorn main:app --reload 
+```
+Note: To change the port number you have to configure the fronted's vite config file as well as the uvicorn port number in the main file under backend directory
 
 
 ### Go to frontend directory :
-+ `npm create vite@latest  
-+ setup tailwind from [https://tailwindcss.com/docs/guides/vite](https://tailwindcss.com/docs/guides/vite)
++ Install Required Packages:
+```
+npm install
+``` 
++ Setup tailwind from [https://tailwindcss.com/docs/guides/vite](https://tailwindcss.com/docs/guides/vite)
 + setup vite config file:
 ```
 import { defineConfig } from 'vite'  
